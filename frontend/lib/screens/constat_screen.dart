@@ -58,7 +58,7 @@ class _ConstatScreenState extends State<ConstatScreen> {
             ),
             const SizedBox(height: 30),
             DropdownButtonFormField<int>(
-              value: _farmId,
+              initialValue: _farmId,
               decoration: const InputDecoration(labelText: 'Ferme concernée'),
               items: const [
                 DropdownMenuItem(value: 1, child: Text('Ferme El Baraka')),

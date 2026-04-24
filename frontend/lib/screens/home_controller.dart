@@ -291,7 +291,7 @@ class _HomeControllerState extends State<HomeController> with TranslatedWidget {
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<int>(
-                  value: _farmId,
+                  initialValue: _farmId,
                   decoration: InputDecoration(
                     labelText: tr('farm_to_control'),
                     prefixIcon: const Icon(Icons.home),
@@ -593,7 +593,7 @@ class _HomeControllerState extends State<HomeController> with TranslatedWidget {
           ),
           const SizedBox(height: 24),
           DropdownButtonFormField<int>(
-            value: _farmId,
+            initialValue: _farmId,
             decoration: InputDecoration(
               labelText: tr('farm_concerned'),
               prefixIcon: const Icon(Icons.home),

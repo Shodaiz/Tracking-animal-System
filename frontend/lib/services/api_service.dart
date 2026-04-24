@@ -275,7 +275,7 @@ class ApiService {
     final headers = await getHeaders();
     final response = await http
         .post(
-      Uri.parse('$baseUrl/controller/verify-scan'),
+      Uri.parse('$baseUrl/inspection/verify-scan'),
       headers: headers,
       body: jsonEncode({
         'farmId': farmId,
@@ -313,7 +313,7 @@ class ApiService {
     final headers = await getHeaders();
     final response = await http
         .post(
-      Uri.parse('$baseUrl/constat/declare'),
+      Uri.parse('$baseUrl/inspection/declare'),
       headers: headers,
       body: jsonEncode({
         'farmId': farmId,

@@ -79,7 +79,7 @@ class _ControllerScreenState extends State<ControllerScreen> {
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 16),
                     DropdownButtonFormField<int>(
-                      value: _farmId,
+                      initialValue: _farmId,
                       decoration: const InputDecoration(labelText: 'Ferme à contrôler'),
                       items: const [
                         DropdownMenuItem(value: 1, child: Text('Ferme El Baraka')),

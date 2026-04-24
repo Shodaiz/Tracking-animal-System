@@ -222,7 +222,7 @@ class _HomeVetState extends State<HomeVet> with TranslatedWidget {
             child: loadingFarms
                 ? const LinearProgressIndicator()
                 : DropdownButtonFormField<int>(
-              value: selectedFarmId,
+              initialValue: selectedFarmId,
               decoration: InputDecoration(
                 labelText: tr('select_farm'),
                 prefixIcon: const Icon(Icons.home),
@@ -523,7 +523,7 @@ class _HomeVetState extends State<HomeVet> with TranslatedWidget {
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           const SizedBox(height: 20),
           DropdownButtonFormField<String>(
-            value: _recordType,
+            initialValue: _recordType,
             decoration: InputDecoration(
               labelText: tr('record_type'),
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),

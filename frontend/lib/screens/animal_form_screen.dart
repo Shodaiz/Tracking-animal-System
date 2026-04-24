@@ -118,7 +118,7 @@ class _AnimalFormScreenState extends State<AnimalFormScreen> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _species,
+                initialValue: _species,
                 decoration: InputDecoration(
                   labelText: 'Espèce',
                   prefixIcon: const Icon(Icons.pets),
@@ -146,7 +146,7 @@ class _AnimalFormScreenState extends State<AnimalFormScreen> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _gender,
+                initialValue: _gender,
                 decoration: InputDecoration(
                   labelText: 'Sexe',
                   prefixIcon: const Icon(Icons.transgender),
@@ -162,7 +162,7 @@ class _AnimalFormScreenState extends State<AnimalFormScreen> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _status,
+                initialValue: _status,
                 decoration: InputDecoration(
                   labelText: 'Statut',
                   prefixIcon: const Icon(Icons.info),

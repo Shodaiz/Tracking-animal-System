@@ -5,14 +5,14 @@ import '../services/app_localizations.dart';
 import 'login_screen.dart';
 import 'rfid_scanner_screen.dart';
 
-class HomeVet extends StatefulWidget {
-  const HomeVet({super.key});
+class VetScreen extends StatefulWidget {
+  const VetScreen({super.key});
 
   @override
-  State<HomeVet> createState() => _HomeVetState();
+  State<VetScreen> createState() => _VetScreenState();
 }
 
-class _HomeVetState extends State<HomeVet> {
+class _VetScreenState extends State<VetScreen> {
   // Fermes
   List<dynamic> farms = [];
   bool loadingFarms = true;
@@ -262,7 +262,7 @@ class _HomeVetState extends State<HomeVet> {
                 ),
                 const SizedBox(height: 12),
                 DropdownButtonFormField<int>(
-                  value: selectedFarmId,
+                  initialValue: selectedFarmId,
                   decoration: InputDecoration(
                     labelText: 'Ferme',
                     prefixIcon: const Icon(Icons.agriculture),
@@ -646,7 +646,7 @@ class _HomeVetState extends State<HomeVet> {
 
           // Type de dossier
           DropdownButtonFormField<String>(
-            value: _recordType,
+            initialValue: _recordType,
             decoration: InputDecoration(
               labelText: 'Type de dossier',
               prefixIcon: const Icon(Icons.category),
