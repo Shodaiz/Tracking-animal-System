@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../services/api_service.dart';
 import '../services/local_db_service.dart';
 import '../services/sync_service.dart';
-import '../services/app_localizations.dart';
 import '../widgets/translated_widget.dart';
 import 'login_screen.dart';
 import 'uhf_scanner_screen.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../services/api_service.dart';
-import '../services/app_localizations.dart';
 import 'login_screen.dart';
 import 'rfid_scanner_screen.dart';
 
