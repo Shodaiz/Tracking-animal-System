@@ -96,13 +96,13 @@ class _LoginScreenState extends State<LoginScreen>
 
       if (!mounted) return;
       final role = data['role'];
-      if (role == 'ROLE_FARMER') {
+      if (role == 'Farmer') {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (_) => HomeFarmer(farmName: data['farmName'] ?? '')));
-      } else if (role == 'ROLE_VET') {
+      } else if (role == 'Vetrinarian') {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (_) => const HomeVet()));
-      } else if (role == 'ROLE_CONTROLLER') {
+      } else if (role == 'Inspector' || role == 'Administrator') {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (_) => const HomeController()));
       }

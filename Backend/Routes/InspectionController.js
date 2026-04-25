@@ -3,7 +3,7 @@ const router  = express.Router();
 const db      = require('../Config/Db');
 const { authMiddleware, requireRole } = require('../middleware/Auth');
 
-router.use(authMiddleware, requireRole('Inspector', 'Administrator'));
+router.use(authMiddleware, requireRole('Inspector'));
 
 
 /**

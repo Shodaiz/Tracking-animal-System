@@ -17,7 +17,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _fullNameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
   final _phoneCtrl = TextEditingController();
-  String _selectedRole = 'ROLE_FARMER';
+  String _selectedRole = 'Farmer';
   bool _isLoading = false;
   bool _obscurePass = true;
   bool _obscureConfirm = true;
@@ -149,7 +149,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Column(
                   children: [
                     _roleOption(
-                      'ROLE_FARMER',
+                      'Farmer',
                       'Éleveur',
                       'Gérer ma ferme et mes animaux',
                       Icons.agriculture,
@@ -157,7 +157,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     const Divider(height: 1),
                     _roleOption(
-                      'ROLE_VET',
+                      'Veterinarian',
                       'Vétérinaire',
                       'Gérer les dossiers médicaux',
                       Icons.medical_services,
@@ -165,7 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     const Divider(height: 1),
                     _roleOption(
-                      'ROLE_CONTROLLER',
+                      'Inspector',
                       'Contrôleur',
                       'Contrôler et vérifier les effectifs',
                       Icons.security,
