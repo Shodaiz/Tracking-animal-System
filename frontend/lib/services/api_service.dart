@@ -269,7 +269,7 @@ class ApiService {
     }
   }
 
-  // ─── CONTROLLER ──────────────────────────────────
+  // ─── Inspector ──────────────────────────────────
   static Future<Map<String, dynamic>> verifyScan(
       int farmId, List<String> scannedTags) async {
     final headers = await getHeaders();
@@ -295,7 +295,7 @@ class ApiService {
     final headers = await getHeaders();
     final response = await http
         .post(
-      Uri.parse('$baseUrl/controller/check'),
+      Uri.parse('$baseUrl/Inspection/check'),
       headers: headers,
       body: jsonEncode({'farmId': farmId}),
     )

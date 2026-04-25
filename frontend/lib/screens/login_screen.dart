@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen>
       } else if (role == 'Vetrinarian') {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (_) => const HomeVet()));
-      } else if (role == 'Inspector' || role == 'Administrator') {
+      } else if (role == 'Inspector') {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (_) => const HomeController()));
       }

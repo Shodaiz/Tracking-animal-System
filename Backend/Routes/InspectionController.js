@@ -164,6 +164,40 @@ router.get('/my', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/inspection/verify-scan:
+ *   post:
+ *     summary: Vérifier les tags UHF scannés contre la base de données
+ *     tags: [Inspection]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/VerifyScanRequest'
+ *     responses:
+ *       200:
+ *         description: Rapport de vérification
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/VerifyScanResponse'
+ *       400:
+ *         description: farmId ou scannedTags manquant
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       404:
+ *         description: Ferme non trouvée
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
 // ─── POST /api/inspection/verify-scan ────────────────────────────────────────
 router.post('/verify-scan', async (req, res) => {
   const { farmId, scannedTags } = req.body;
