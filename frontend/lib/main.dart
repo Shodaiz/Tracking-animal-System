@@ -55,9 +55,9 @@ class AuthWrapper extends StatelessWidget {
         final farmName = prefs.getString('farmName') ?? '';
 
         if (token.isEmpty) return const LoginScreen();
-        if (role == 'ROLE_FARMER') return HomeFarmer(farmName: farmName);
-        if (role == 'ROLE_VET') return const HomeVet();
-        if (role == 'ROLE_CONTROLLER') return const HomeController();
+        if (role == 'Farmer') return HomeFarmer(farmName: farmName);
+        if (role == 'Veterinarian') return const HomeVet();
+        if (role == 'Inspector') return const HomeController();
 
         return const LoginScreen();
       },

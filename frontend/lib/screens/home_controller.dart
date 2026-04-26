@@ -7,6 +7,7 @@ import '../services/sync_service.dart';
 import '../widgets/translated_widget.dart';
 import 'login_screen.dart';
 import 'uhf_scanner_screen.dart';
+import'../services/app_localizations.dart';
 
 class HomeController extends StatefulWidget {
   const HomeController({super.key});

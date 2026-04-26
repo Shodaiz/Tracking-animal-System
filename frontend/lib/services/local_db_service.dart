@@ -75,7 +75,7 @@ class LocalDbService {
         'animals',
         {
           'id': a['id'],
-          'rfidTag': a['rfidTag'],
+          'rfidTag': a['rfidCode'],
           'species': a['species'],
           'breed': a['breed'],
           'gender': a['gender'],
