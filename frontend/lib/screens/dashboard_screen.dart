@@ -36,7 +36,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     int ovin = animals.where((a) => a['species'] == 'Ovin').length;
     int bovin = animals.where((a) => a['species'] == 'Bovin').length;
     int caprin = animals.where((a) => a['species'] == 'Caprin').length;
-    int active = animals.where((a) => a['status'] == 'Active').length;
+    int active = animals.where((a) => a['life_status'] == 'Active' || a['lifeStatus'] == 'Active').length;
     int other = animals.length - active;
 
     return Scaffold(

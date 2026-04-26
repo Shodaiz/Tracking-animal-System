@@ -74,12 +74,26 @@ router.post('/login', async (req, res) => {
       { expiresIn: process.env.JWT_EXPIRES_IN || '24h' }
     );
 
+    // ✅ Récupérer farmId si Farmer
+    let farmId = null, farmName = null;
+    if (user.role === 'Farmer') {
+      const [farms] = await db.query(
+        'SELECT id, name FROM farms WHERE owner_id = ? LIMIT 1', [user.id]
+      );
+      if (farms.length > 0) {
+        farmId   = farms[0].id;
+        farmName = farms[0].name;
+      }
+    }
+
     return res.json({
       token,
       role:     user.role,
       username: user.username,
       userId:   user.id,
       fullName: `${user.first_name} ${user.last_name}`,
+      farmId,
+      farmName,
     });
   } catch (err) {
     console.error(err);
@@ -120,7 +134,13 @@ router.post('/login', async (req, res) => {
  */
 // ─── POST /api/auth/register ─────────────────────────────────────────────────
 router.post('/register', async (req, res) => {
-  const { username, password, email, firstName, lastName, role, phone } = req.body;
+  let { username, password, email, firstName, lastName, fullName, role, phone } = req.body;
+  // ✅ Support fullName envoyé par Flutter → découper en firstName + lastName
+  if (fullName && (!firstName || !lastName)) {
+    const parts = fullName.trim().split(' ');
+    firstName = parts[0];
+    lastName  = parts.slice(1).join(' ') || parts[0];
+  }
 
   if (!username || !password || !email || !firstName || !lastName)
     return res.status(400).json({ message: 'Champs obligatoires manquants' });

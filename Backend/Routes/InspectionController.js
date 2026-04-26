@@ -240,4 +240,58 @@ router.post('/verify-scan', async (req, res) => {
   }
 });
 
+// ─── POST /api/inspection/confirm ─────────────────────────────────────────────
+/**
+ * @swagger
+ * /api/inspection/confirm:
+ *   post:
+ *     summary: Confirmer un inventaire de ferme
+ *     tags: [Inspection]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               farmId: { type: integer }
+ */
+router.post('/confirm', async (req, res) => {
+  const { farmId } = req.body;
+  const username   = req.user.username;
+
+  if (!farmId)
+    return res.status(400).json({ message: 'farmId requis' });
+
+  try {
+    const [farms] = await db.query('SELECT * FROM farms WHERE id = ?', [farmId]);
+    if (farms.length === 0)
+      return res.status(404).json({ message: 'Ferme non trouvée' });
+
+    const [users] = await db.query('SELECT id FROM users WHERE username = ?', [username]);
+    const [animals] = await db.query(
+      'SELECT COUNT(*) AS cnt FROM animals WHERE farm_id = ?', [farmId]
+    );
+
+    const [result] = await db.query(
+      `INSERT INTO inspections
+         (inspector_id, description, constat_type, result, status, scanned_count, registered_count, inspection_date)
+       VALUES (?, ?, 'Inventaire', 'Conforme', 'Resolved', ?, ?, NOW())`,
+      [users[0].id, `Inventaire confirmé — ${farms[0].name}`, animals[0].cnt, animals[0].cnt]
+    );
+
+    return res.json({
+      message:      'Inventaire confirmé avec succès',
+      farmName:     farms[0].name,
+      animalCount:  animals[0].cnt,
+      inspectionId: result.insertId,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Erreur serveur' });
+  }
+});
+
 module.exports = router;

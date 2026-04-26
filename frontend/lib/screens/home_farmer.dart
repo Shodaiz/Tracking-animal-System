@@ -362,7 +362,7 @@ class _HomeFarmerState extends State<HomeFarmer> with TranslatedWidget {
                     border: Border.all(color: Colors.blue[200]!),
                   ),
                   child: Text(
-                    'ID TAG #${animal!['rfidTag']}',
+                    'ID TAG #${animal!['rfidCode'] ?? animal!['rfid_code'] ?? ''}',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.blue[700],
@@ -370,7 +370,7 @@ class _HomeFarmerState extends State<HomeFarmer> with TranslatedWidget {
                   ),
                 ),
                 const Spacer(),
-                StatusBadge(animal!['status'] ?? 'Active'),
+                StatusBadge(animal!['life_status'] ?? 'Active'),
               ],
             ),
             const SizedBox(height: 12),
@@ -503,15 +503,15 @@ class _HomeFarmerState extends State<HomeFarmer> with TranslatedWidget {
                         color: const Color(0xFF1B5E20),
                       ),
                     ),
-                    title: Text('${a['rfidTag']} - ${a['breed']}',
+                    title: Text('${a['rfidCode'] ?? a['rfid_code'] ?? ''} - ${a['breed']}',
                         style: const TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: Text('${a['species']} • ${a['gender']}'),
-                    trailing: StatusBadge(a['status'] ?? 'Active'),
+                    trailing: StatusBadge(a['life_status'] ?? 'Active'),
                     onTap: () {
                       setState(() {
                         animal = {
                           'id': a['id'],
-                          'rfidTag': a['rfidTag'],
+                          'rfidTag': a['rfidCode'] ?? a['rfid_code'] ?? '',
                           'species': a['species'],
                           'breed': a['breed'],
                           'gender': a['gender'],
@@ -535,7 +535,7 @@ class _HomeFarmerState extends State<HomeFarmer> with TranslatedWidget {
 
   Widget _buildDashboardPage() {
     int total = myAnimals.length;
-    int active = myAnimals.where((a) => a['status'] == 'Active').length;
+    int active = myAnimals.where((a) => a['life_status'] == 'Active' || a['lifeStatus'] == 'Active').length;
     int ovin = myAnimals.where((a) => a['species'] == 'Ovin').length;
     int bovin = myAnimals.where((a) => a['species'] == 'Bovin').length;
     int sold = myAnimals.where((a) => a['status'] == 'Sold').length;

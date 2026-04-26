@@ -120,7 +120,7 @@ class _HomeVetState extends State<HomeVet> with TranslatedWidget {
 
     try {
       await ApiService.addHealthRecord(
-        animal!['rfidTag'],
+        animal!['rfidCode'] ?? animal!['rfid_code'] ?? '',
         _recordType,
         _diagnosisController.text.trim(),
         _treatmentController.text.trim(),
@@ -128,7 +128,7 @@ class _HomeVetState extends State<HomeVet> with TranslatedWidget {
       _diagnosisController.clear();
       _treatmentController.clear();
       _snack(tr('record_added'), color: Colors.green);
-      _scanAnimal(animal!['rfidTag']);
+      _scanAnimal(animal!['rfidCode'] ?? animal!['rfid_code'] ?? '');
     } catch (e) {
       _snack(e.toString());
     }
@@ -315,7 +315,7 @@ class _HomeVetState extends State<HomeVet> with TranslatedWidget {
                             border: Border.all(color: Colors.teal[200]!),
                           ),
                           child: Text(
-                            'TAG #${animal!['rfidTag']}',
+                            'TAG #${animal!['rfidCode'] ?? animal!['rfid_code'] ?? ''}',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.teal[800],
@@ -331,7 +331,7 @@ class _HomeVetState extends State<HomeVet> with TranslatedWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text(
-                            animal!['status'] ?? 'Active',
+                            animal!['lifeStatus'] ?? animal!['life_status'] ?? 'Active' ?? 'Active',
                             style: TextStyle(
                                 color: Colors.green[700],
                                 fontWeight: FontWeight.bold,
@@ -488,7 +488,7 @@ class _HomeVetState extends State<HomeVet> with TranslatedWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Animal: ${animal!['rfidTag']}',
+                      Text('Animal: ${animal!['rfidCode'] ?? animal!['rfid_code'] ?? ''}',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.teal[800],

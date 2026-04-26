@@ -6,18 +6,18 @@ class AlarmService {
   static Future<void> checkAlarms(List<dynamic> animals) async {
     // Alerte : animaux inactifs
     for (final a in animals) {
-      if (a['status'] == 'Quarantined') {
+      if (a['life_status'] == 'Quarantined') {
         await NotificationService.show(
           title: '⚠️ Animal en quarantaine',
-          body: 'L\'animal ${a['rfidTag']} (${a['breed']}) est en quarantaine',
+          body: 'L\'animal ${a['rfidCode'] ?? a['rfid_code']} (${a['breed']}) est en quarantaine',
           id: a['id'] ?? 0,
         );
       }
 
-      if (a['status'] == 'Lost') {
+      if (a['life_status'] == 'Lost') {
         await NotificationService.show(
           title: '🚨 Animal perdu',
-          body: 'L\'animal ${a['rfidTag']} (${a['breed']}) est déclaré perdu',
+          body: 'L\'animal ${a['rfidCode'] ?? a['rfid_code']} (${a['breed']}) est déclaré perdu',
           id: (a['id'] ?? 0) + 1000,
         );
       }
